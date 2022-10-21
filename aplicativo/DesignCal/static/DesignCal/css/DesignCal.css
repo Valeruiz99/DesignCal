@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&family=Satisfy&family=Vesper+Libre&display=swap');
+*{
+    font-family: 'Satisfy', cursive;
+}
+header{
+    background-image: url("../img/banner.png");
+    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Vesper Libre', serif;
+    color: black;
+    display: flex;
+    flex-direction: column-reverse;
+    height: 160px;
+    font-size: larger;
+}
+#menu{
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+a.dropdown-item{
+    font-size: larger   ;
+}
+#banner{
+    display: grid;
+    grid-template-columns: 12% 88%;
+}
+#navbar{
+    margin-top: 8%;
+    font-size: 1.3rem;
+}
+#logo .logo{
+    width: 100%;
+}
+#inicio{
+    display: flex;
+    padding-top: 1.5rem;
+}
+#nav{
+    --bs-nav-link-color: black;
+    --bs-nav-link-hover-color: black;
+    --bs-nav-link-disabled-color: black;
+}
+#logo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+main{
+    background-color: #f8f0de;
+    text-align: -webkit-center;
+}
+footer{
+    background-color: black;
+    color: white;
+    min-height: 22vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    font-size: large;
+    padding-top: 1%;
+}
+ion-icon{
+    font-size: 40px;
+    color: black;
+}
+i.bi.bi-instagram, 
+i.bi.bi-facebook, 
+i.bi.bi-pinterest {
+    color: white;
+    font-size: 30px;
+}
+.redes,
+.contacto{
+    text-align: center;
+}
+.sobreNosotros{
+    display: grid;
+    padding-top: 3%;
+}
+#title h4{
+    font-size: 1.5rem;
+    padding-left: 15%;
+}
+#title p {
+    font-size: 4.5rem;
+}
+#descripcion h4{
+    font-size: 2rem;
+    margin-bottom: 3%;
+}
+#descripcion p{
+    font-size: 1.5rem;
+}
+a#registro{
+    color: black;
+}
+#log{
+    text-align: center;
+}
+#log img{
+    width: 45%;
+}
+#carouselExampleCaptions img{
+    width: 60%;
+}
+.carousel-inner{
+    text-align: -webkit-center;
+}
+.mainIndex{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    justify-items: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.letra{
+    font-size: 1.3rem;
+}
+.formPatron{
+    display: grid;
+    width: 30%;
+    grid-template-columns: 30% 70%;
+    row-gap: 15%;
+}
+#list{
+    border: black solid 1px;
+    text-align: center;
+}
+#list tbody{
+    text-align: center;
+}
+.form input{
+    width: 20%;
+    text-align: center;
+}
+
+
+

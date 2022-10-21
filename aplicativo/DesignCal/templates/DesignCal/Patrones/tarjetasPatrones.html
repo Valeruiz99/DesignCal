@@ -1,0 +1,40 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1 id="patrones">Patrones de moldería</h1>
+
+<div class="dat">
+  <input class="form-control me-2" id="dato" type="search" placeholder="Buscar" aria-label="Search" name="dato"
+    value="{{ datoBuscado }}" style=" width:10%;" onkeyup="buscar('{% url 'DesignCal:patron-buscar' %}');">
+  {% csrf_token %}
+</div>
+<br />
+{% if datoBuscado %}
+<a href="{% url 'DesignCal:patron' %}">Volver</a>
+{% endif %}
+
+<div id="respuesta">
+  <div class="container p-3 border border-info mr-3">
+    <div class="row row-cols-1 row-cols-md-3" style="justify-content: space-around;">
+      {% if datos %}
+        {% for r in datos %}
+        <div class="card" style="width: 18rem; --bs-card-bg: #ffffff70; margin-bottom: 2%;">
+          <img src="{{ r.imagen.url }}" class="card-img-top" style="margin-top:5%;">
+          <div class="card-body">
+            <h5 class="card-title">{{ r.nombreArchivo }}</h5>
+            <p class="card-text">{{ r.descripcion }}</p>
+            <p class="card-text">{{ r.precio }}</p>
+            <a href="#" class="btn btn-primary">Ver</a>
+            <a href="#" class="btn btn-primary">Comprar</a>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <h1 class="text-center">No hay patrones para mostrar</h1>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

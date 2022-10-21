@@ -1,0 +1,22 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Ingresar un nuevo correo</h1>
+
+    <form action="{% url 'DesignCal:correos-guardar' %}" method="post">
+        {% csrf_token %}
+        <select name="usuario" id="usuario">
+            <option value="0">Creador</option>
+            {% for i in usuario %}
+                <option value="{{ i.cedula }}">{{ i.nombre }}</option>
+            {% endfor %}
+        </select>
+        <label for="titulo">Título</label>
+        <input class="form-control" type="text" name="titulo" id="titulo" placeholder="Titulo" required>
+        <label for="contenido">Contenido</label>
+        <input class="form-control" type="text" name="contenido" id="contenido" placeholder="Contenido del mensaje" required>
+        
+        <br/><button class="btn btn-primary" type="submit">Agregar</button>
+    </form>
+{% endblock %}

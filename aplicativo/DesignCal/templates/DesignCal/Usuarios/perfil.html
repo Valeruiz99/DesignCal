@@ -1,0 +1,68 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Perfil</h1>
+
+<div class="container-fluid position-sticky top-0" id="headPerfil" style="display: grid;
+justify-content: center;">
+    <ul class="nav nav-pills mb-3 py-3 container" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
+            role="tab" aria-controls="pills-home" aria-selected="true">Perfil</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-edit-tab" data-bs-toggle="pill" data-bs-target="#pills-edit" type="button"
+            role="tab" aria-controls="pills-edit" aria-selected="false">Editar</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-car-tab" data-bs-toggle="pill" data-bs-target="#pills-car" type="button"
+            role="tab" aria-controls="pills-car" aria-selected="false">Compras</a>
+        </li>
+      </ul>
+</div>  
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <h3>Perfil ({{ perfil.nombre }})</h3>
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ perfil.fotoPerfil.url }}" class="img-fluid rounded-start" alt="{{ perfil.nombre }}">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ perfil.nombre }} {{ perfil.apellido }}</h5>
+                  <p class="card-text">Correo electrónico: {{ perfil.correo }}</p>
+                  <p class="card-text">Usuario: {{ perfil.usuario }}</p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="pills-edit" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="container">
+            <form action="{% url 'DesignCal:usuario-actualizarPerfil' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label>Nombre</label>
+                <input type="text" name="nombre" class="form-control" value="{{ perfil.nombre }}">
+                <label>Apellido</label>
+                <input type="text" name="apellido" class="form-control" value="{{ perfil.apellido }}">
+                <label>Correo</label>
+                <input type="email" name="correo" class="form-control" value="{{ perfil.correo }}">
+                <label>Usuario</label>
+                <input type="text" name="usuario" class="form-control" value="{{ perfil.usuario }}">
+                <!--Hacer la confirmación de contraseña-->
+                <label>Contraseña</label>
+                <p>Deje en blanco para mantener, o asigne una contraseña nueva.</p>
+                <input type="password" name="contrasena" class="form-control">
+
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="pills-car" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <h1>Lista de compras</h1>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,6 @@
+#pip install -r requirements.txt --> Este es el comando para ejecutar y que se instalen las librerías y todo.
+#Versión comprobada para la aplicación, pero podría funcionar una más actualizada.
+Django == 4.0.6
+
+#Librería para tratamiento de imágenes en python.
+Pillow >= 9.2.0

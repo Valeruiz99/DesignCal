@@ -1,0 +1,34 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Ingresar un nuevo usuario</h1>
+
+    <form action="{% url 'DesignCal:usuario-guardar' %}" method="post">
+        {% csrf_token %}
+        <label for="cedula">Cédula</label>
+        <input class="form-control" type="number" name="cedula" id="cedula" placeholder="Número de cédula" required>
+        <label for="nombre">Nombre</label>
+        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombres">
+        <label for="apellido">Apellido</label>
+        <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellidos">
+        <label for="correo">Correo</label>
+        <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo electrónico" required>
+        <label for="usuario">Usuario</label>
+        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Usuario o alias" required>
+        <label for="contrasena">Contraseña</label>
+        <input class="form-control" type="text" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+        {% if request.session.logueo.3 == "Administrador" %}
+        <label for="NombreRol">Rol</label>
+        <select name="NombreRol">
+            <option value="0">Rol</option>
+        {% for a in NombreRol %}
+            <option value="{{a.id}}">{{a.NombreRol}}</option>
+        {% endfor %}
+        </select><br/>
+        {% endif %}
+        <label for="foto">Foto de perfil</label><br/>
+        <input type="file" class="form-control" name="fotoPerfil" style="width:70%; margin-left: auto; margin-right:auto;"><br/>
+        <br/><button class="btn btn-primary" type="submit">Agregar</button>
+    </form>
+{% endblock %}

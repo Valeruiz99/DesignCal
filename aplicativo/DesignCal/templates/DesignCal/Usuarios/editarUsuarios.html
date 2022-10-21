@@ -1,0 +1,32 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+<h3>Editar usuario ( {{ datos.cedula }} )</h3>
+<form action="{% url 'DesignCal:usuario-actualizar' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="cedula" value="{{ datos.cedula }}">
+    <label for="nombre">Nombre</label>
+    <input class="form-control" type="text" name="nombre" value="{{ datos.nombre }}">
+    <label for="apellido">Apellido</label>
+    <input class="form-control" type="text" name="apellido" value="{{ datos.apellido }}">
+    <label for="correo">Correo</label>
+    <input class="form-control" type="email" name="correo" value="{{ datos.correo }}">
+    <label for="usuario">Usuario</label>
+    <input class="form-control" type="text" name="usuario" value="{{ datos.usuario }}">
+    <label for="contrasena">Contraseña</label>
+    <p>Deje en blanco para mantener, o asigne una contraseña nueva.</p>
+    <input class="form-control" type="password" name="contrasena">
+    <label for="NombreRol">Rol</label>
+    <select name="NombreRol">
+        <option value="0">{{ datos.NombreRol }}</option>
+    {% for a in NombreRol %}
+        <option value="{{a.id}}">{{a.NombreRol}}</option>
+    {% endfor %}
+    </select><br/>
+    <label for="foto">Foto de perfil</label><br/>
+    <span>Foto anterior: {{ datos.fotoPerfil }}</span>
+    <input type="file" class="form-control" name="fotoPerfil" style="width:70%; margin-left: auto; margin-right:auto;"><br/>
+    <br/><button class="btn btn-primary" type="submit">Actualizar</button>
+</form>
+
+{% endblock %}

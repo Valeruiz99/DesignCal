@@ -1,0 +1,55 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Ingresar un nuevo patrón de moldería</h1>
+
+<div class="form">
+    <form action="{% url 'DesignCal:patron-guardar' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="nombreArchivo">Nombre del archivo</label>
+            <input class="form-control" type="text" name="nombreArchivo" id="nombreArchivo"
+                placeholder="Nombre del archivo" required>
+        </div>
+        <div>
+            <label for="tipoPatron">Tipo de Patrón</label>
+            <select name="tipoPatron">
+                <option value="0">Tipo de patrón</option>
+                {% for a in tipoPatron %}
+                <option value="{{a.id}}">{{a.tipoPatron}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="descripcion">Descripción del archivo</label>
+            <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Descripcion">
+        </div>
+        <div>
+            <label for="precio">Precio</label>
+            <input class="form-control" type="text" name="precio" id="precio" placeholder="Precio" required>
+        </div>
+        <div>
+            <label for="archivo">Adjuntar Archivo</label>
+            <input class="form-control" type="file" name="archivo">
+        </div>
+        <div>
+            <label for="imagen">Adjuntar Imagen</label>
+            <input class="form-control" type="file" name="imagen"
+                style="width: 70; margin-left: auto; margin-right:auto;">
+        </div>
+        <div>
+            <label for="usuario">Creador</label>
+            <select name="usuario">
+                <option value="0">Creador</option>
+                {% for a in usuario %}
+                <option value="{{a.cedula}}">{{a.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">Agregar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

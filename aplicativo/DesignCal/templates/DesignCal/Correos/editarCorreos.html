@@ -1,0 +1,23 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Editas correo ( {{ datos.titulo }} )</h1>
+
+    <form action="{% url 'DesignCal:correos-actualizar' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ datos.id }}">
+        <select name="usuario" id="usuario">
+            <option value="0">Creador</option>
+            {% for i in usuario %}
+                <option value="{{ i.cedula }}">{{ i.nombre }}</option>
+            {% endfor %}
+        </select>
+        <label for="titulo">Título</label>
+        <input class="form-control" type="text" name="titulo" id="titulo" value="{{ datos.titulo }}" >
+        <label for="contenido">Contenido</label>
+        <input class="form-control" type="text" name="contenido" id="contenido" value="{{ datos.contenido }}">
+        
+        <br/><button class="btn btn-primary" type="submit">Editar</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Editar patrón de moldería ( {{ datos.nombreArchivo }} )</h1>
+
+    <form action="{% url 'DesignCal:patron-actualizar' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ datos.id }}">
+        <label for="nombreArchivo">Nombre del archivo</label>
+        <input class="form-control" type="text" name="nombreArchivo" id="nombreArchivo" value="{{ datos.nombreArchivo }}">
+        <label for="tipoPatron">Tipo de Patrón</label>
+        <select name="tipoPatron">
+            <option value="0">{{ datos.tipoPatron }}</option>
+            {% for r in tipoPatron %}
+                <option value="{{ r.id }}">{{ r.tipoPatron }}</option>
+            {% endfor %}
+        </select><br/>
+        <label for="descripcion">Descripción del archivo</label>
+        <input class="form-control" type="text" name="descripcion" id="descripcion" value="{{ datos.descripcion }}">
+        <label for="precio">Precio</label>
+        <input class="form-control" type="text" name="precio" id="precio" value="{{ datos.precio }}">
+        <label for="archivo">Ajuntar Archivo</label>
+        <input class="form-control" type="file" name="archivo" id="archivo" value="{{ datos.arhivo }}">
+        <label for="imagen">Ajuntar Imagen</label>
+        <span>Imagen anterior: {{ datos.imagen }}</span><br/>
+        <input class="form-control" type="file" name="imagen" style="width:70%; margin-left: auto; margin-right:auto;">
+        <label for="usuario">Creador</label>
+        <select name="usuario">
+            <option value="0">{{ datos.usuario }}</option>
+        {% for a in usuario %}
+            <option value="{{a.cedula}}">{{a.nombre}}</option>
+        {% endfor %}
+        </select><br/>
+        <br/><button class="btn btn-primary" type="submit">Editar</button>
+    </form>
+{% endblock %}

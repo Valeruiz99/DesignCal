@@ -1,0 +1,73 @@
+{% extends "DesignCal/base.html" %}
+{% load static %}
+
+{% block body %}
+<div class="sobreNosotros">
+    <div id="title">
+        <p>
+            Design-Cal
+        </p>
+        <h4>Venta de patrones de moda</h4>
+    </div>
+</div>
+<div class="mainIndex">
+    <div id="descripcion">
+        <h4>Acerca de nosotros</h4>
+        <p>Somos una empresa encargada de dar a conocer excelentes profesionales de patonaje y diseño de modas,
+            facilitando la venta de sus patrones de diseño con un precio muy accesible y sin salir de tu casa.</p>
+    </div>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="5000">
+                <img src="{% static 'DesignCal/img/inicio/bebeinicio.png' %}" class="d-block" alt="...">
+                <div class="carousel-caption d-none d-md-block letra">
+                    <h5>Encuentra ropa para tu bebé</h5>
+                    <p>Descarga y haz tu misma la ropa para tu bebé.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="{% static 'DesignCal/img/inicio/ninosinicio.png' %}" class="d-block" alt="...">
+                <div class="carousel-caption d-none d-md-block letra">
+                    <h5>Encuentra ropa para los niños</h5>
+                    <p>Descarga y crea divertidos outfits para los pequeños de la casa.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="{% static 'DesignCal/img/inicio/mujerinicio.png' %}" class="d-block" alt="...">
+                <div class="carousel-caption d-none d-md-block letra">
+                    <h5>Encuentra ropa para mujer</h5>
+                    <p>Descarga, crea y combina dististos estilos para demostrar tu poder.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="{% static 'DesignCal/img/inicio/hombreinicio.png' %}" class="d-block" alt="...">
+                <div class="carousel-caption d-none d-md-block letra">
+                    <h5>Encuentra ropa para hombre</h5>
+                    <p>Hermosos patrones para combinar y sacar a deslumbrar tu estilo.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+{% endblock %}

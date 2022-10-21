@@ -1,0 +1,35 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Editar Compra ( {{ datos.id }} )</h1>
+
+    <form action="{% url 'DesignCal:compra-actualizar' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ datos.id }}">
+        <label for="IdFactura">Id de la factura</label>
+        <select name="IdFactura">
+            <option value="0">{{ datos.IdFactura }}</option>
+        {% for a in IdFactura %}
+            <option value="{{a.id}}">{{a.id}}</option>
+        {% endfor %}
+        </select><br/>
+        <label for="usuario">Usuario</label>
+        <select name="usuario">
+            <option value="0">{{ datos.usuario }}</option>
+        {% for a in usuario %}
+            <option value="{{a.cedula}}">{{a.nombre}}</option>
+        {% endfor %}
+        </select><br/>
+        <label for="descripcion">Descripción</label>
+        <input class="form-control" type="text" name="descripcion" id="descripcion" value="{{ datos.descripcion }}">
+        <label for="estado">Estado</label>
+        <select name="estado">
+            <option value="0">{{ datos.estado }}</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Completo">Completo</option>
+            <option value="Cancelado">Cancelado</option>
+        </select><br/>
+        <br/><button class="btn btn-primary" type="submit">Agregar</button>
+    </form>
+{% endblock %}

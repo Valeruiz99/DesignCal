@@ -1,0 +1,15 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Ingresar un nuevo tipo de patrón</h1>
+
+    <form action="{% url 'DesignCal:tipoPatron-guardar' %}" method="post">
+        {% csrf_token %}
+        <label for="tipoPatron">Tipo de patrón</label>
+        <input class="form-control" type="text" name="tipoPatron" id="tipoPatron" placeholder="Nombre del tipo de patrón" required>
+        <label for="descripcion">Descripción</label>
+        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Descripción del tipo de patrón" required>
+        <br/><button class="btn btn-primary" type="submit">Agregar</button>
+    </form>
+{% endblock %}

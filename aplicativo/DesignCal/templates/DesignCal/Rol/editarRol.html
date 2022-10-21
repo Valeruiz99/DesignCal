@@ -1,0 +1,15 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Editar Rol ( {{ datos.NombreRol }} )</h1>
+<form action="{% url 'DesignCal:rol-actualizar' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ datos.id }}">
+    <label for="NombreRol">Nombre del rol</label>
+    <input class="form-control" type="text" name="NombreRol" id="NombreRol" value="{{ datos.NombreRol }}" required>
+    </select><br/>
+    <br/><button class="btn btn-primary" type="submit">Editar</button>
+</form>
+
+{% endblock %}

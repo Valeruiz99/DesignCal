@@ -1,0 +1,76 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+  <h1 id="patrones">Patrones</h1>
+   
+  <div class="dat">
+    <input class="form-control me-2" id="dato" type="search" placeholder="Buscar" aria-label="Search" name="dato" value="{{ datoBuscado }}" style=" width:10%;" onkeyup="buscar('{% url 'DesignCal:patron-buscar' %}');">
+    {% csrf_token %}
+  </div>
+  <br />
+  {% if datoBuscado %}
+    <a href="{% url 'DesignCal:patron' %}">Volver</a>
+  {% endif %}
+
+  <div id="respuesta">
+  {% if datos %}
+
+    <nav aria-label="..." style="margin-left: 7%; display: grid; grid-template-columns: 50% 50%;">
+      <ul class="pagination">
+        <li class="page-item {% if not datos.has_previous %}disabled{% endif %}">
+          <a class="page-link" {% if datos.has_previous %} href="?page={{ datos.previous_page_number }}" {% endif %}>Anterior</a>
+        </li>
+
+        {% for i in "x"|rjust:datos.paginator.num_pages|make_list %}
+        <li class="page-item {% if forloop.counter == datos.number %}active{% endif %}" aria-current="page">
+          <a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+        </li>
+        {% endfor %}
+
+        <li class="page-item {% if not datos.has_next %}disabled{% endif %}">
+          <a class="page-link" {% if datos.has_next %}href="?page={{ datos.next_page_number }}" {% endif %}>Siguiente</a>
+        </li>
+      </ul>
+      <div style="display: flex;
+      flex-direction: row-reverse;margin-right: 14%;">
+        <a class="btn btn-outline-success my-2 my-sm-0" style="height: 70%;" href="{% url 'DesignCal:patron-add' %}">Agregar Nuevo Patrón</a>
+      </div>
+    </nav>
+
+    <table class="table table-striped container my-3" id="list">
+      <thead>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Tipo de patrón</th>
+        <th>Archivo</th>
+        <th>Imagen</th>
+        <th>Creador</th>
+        <th colspan="2">Acciones</th>
+      </thead>
+      <tbody>
+        {% for r in datos %}
+        <tr>
+          <td>{{ r.id }}</td>
+          <td>{{ r.nombreArchivo }}</td>
+          <td>{{ r.descripcion }}</td>
+          <td>{{ r.precio }}</td>
+          <td>{{ r.tipoPatron }}</td>
+          <td>{{ r.archivo }}</td>
+          <td><img src="{{ r.imagen.url }}" width="20%;" /></td>
+          <td>{{ r.usuario }}</td> 
+          <td><a class="btn btn-warning" href="{% url 'DesignCal:patron-editar' r.id %}">Editar</a></td>
+          <td><a class="btn btn-danger" onclick="confirmar('{% url 'DesignCal:patron-eliminar' r.id %}')">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    Pág. {{ datos.number }} de {{ datos.paginator.num_pages }}.
+    {% else %}
+    <h1>No hay datos</h1>
+    {% endif %}
+  </div>
+
+{% endblock %}

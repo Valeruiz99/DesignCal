@@ -1,0 +1,13 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Ingresar un nuevo rol</h1>
+
+    <form action="{% url 'DesignCal:rol-guardar' %}" method="post">
+        {% csrf_token %}
+        <label for="NombreRol">Nombre del rol</label>
+        <input class="form-control" type="text" name="NombreRol" id="NombreRol" placeholder="Nombre del rol" required>
+        <br/><button class="btn btn-primary" type="submit">Agregar</button>
+    </form>
+{% endblock %}

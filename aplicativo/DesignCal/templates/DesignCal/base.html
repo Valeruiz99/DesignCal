@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design-Cal</title>
+    <link rel="stylesheet" href="{% static 'DesignCal/bootstrap-icons-1.9.1/bootstrap-icons.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'DesignCal/css/DesignCal.css' %}">
+    <link rel="stylesheet" href="{% static 'DesignCal/css/bootstrap.min.css' %}">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'DesignCal/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'DesignCal/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'DesignCal/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'DesignCal/favicon/site.webmanifest' %}">
+</head>
+
+<body>
+    <header>
+        <div id="banner">
+            <a class="navbar-brand" id="logo" href="{% url 'DesignCal:index' %}">
+                <img class="logo" src="{% static 'DesignCal/img/logo.jpg' %}" alt="logo">
+            </a>
+            <nav class="navbar navbar-expand-lg " id="navbar">
+                
+                <div class="collapse navbar-collapse" id="menu">
+                    <div class="barra">
+                        <ul class="navbar-nav mr-auto" id="nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'DesignCal:index' %}">Inicio <span
+                                        class="sr-only"></span></a>
+                            </li>
+                            {% if request.session.logueo.3 == "Diseñador" or request.session.logueo.3 == "Administrador" %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" href="#">
+                                    Patrones
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'DesignCal:patron-add' %}">Cargar</a>
+                                    <a class="dropdown-item" href="{% url 'DesignCal:patron' %}">Listar</a>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" href="#">
+                                    Tipos de patrones
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'DesignCal:tipoPatron' %}">Listar tipos de
+                                        patrones</a>
+                                    <a class="dropdown-item" href="{% url 'DesignCal:tipoPatron-add' %}">Agregar tipos
+                                        de patrones</a>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if request.session.logueo.3 == "Administrador" %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" href="#">
+                                    Usuarios
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'DesignCal:usuario-add' %}">Ingresar</a>
+                                    <a class="dropdown-item" href="{% url 'DesignCal:usuario' %}">Listar</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" href="#">
+                                    Roles
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'DesignCal:rol-add' %}">Ingresar</a>
+                                    <a class="dropdown-item" href="{% url 'DesignCal:roles' %}">Listar</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" href="#">
+                                    Correos
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'DesignCal:correos-add' %}">Crear</a>
+                                    <a class="dropdown-item" href="{% url 'DesignCal:correos' %}">Listar</a>
+                                </div>
+
+                            </li>
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" href="#">
+                                    Compras
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'DesignCal:compra-add' %}">Agregar Compra</a>
+                                    <a class="dropdown-item" href="{% url 'DesignCal:compras' %}">Listar Compras</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" href="#">
+                                    Facturas
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'DesignCal:facturas-add' %}">Ingresar</a>
+                                    <a class="dropdown-item" href="{% url 'DesignCal:facturas' %}">Listar</a>
+                                </div>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active" href="{% url 'DesignCal:patrones' %}">
+                                    Patrones
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="sesion">
+                        <span class="d-flex">
+                            {% if request.session.logueo %}
+                            <!--Aquí verifica si existe el logueo-->
+                            <button onclick="location.href='{% url 'DesignCal:usuario-perfil' %}';" class="btn btn-secundary"><i class="bi bi-person-circle"></i>{{ request.session.logueo.1 }}</button> 
+                            <!--De esta manera sin especificar la posición, me muestra todo el vector-->
+
+                            <a class="nav-link active" aria-current="page" href="{% url 'DesignCal:logout' %}"><i class="bi bi-box-arrow-right"></i></a>
+                            {% else %}
+                            <a class="nav-link active" aria-current="page"
+                                href="{% url 'DesignCal:login-formulario' %}">Iniciar Sesión</a>
+                            <a class="nav-link" aria-current="page" href="{% url 'DesignCal:usuario-add' %}">Registrarse</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{% if message.tags != 'error' %}{{ message.tags }}{% elif message.tags == 'error' %}danger{% endif %}"
+            role="alert">{{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% block body %}
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="contacto">
+            <p id="contactanos">Contáctanos</p>
+            <p>vbustamante8@misena.edu.co</p>
+            <p>WhatsApp: +573014247110</p>
+        </div>
+        <div class="redes">
+            <p>Nuestras Redes Sociales</p>
+
+        </div>
+    </footer>
+    <script src="{% static 'DesignCal/js/jquery-3.6.1.min.js' %}"></script>
+    <script src="{% static 'DesignCal/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'DesignCal/js/funciones.js' %}"></script>
+</body>
+
+</html>

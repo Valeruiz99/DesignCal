@@ -1,0 +1,33 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Ingresar una nueva compra</h1>
+
+    <form action="{% url 'DesignCal:compra-guardar' %}" method="post">
+        {% csrf_token %}
+        <label for="IdFactura">Id de la factura</label>
+        <select name="IdFactura">
+            <option value="0">Id</option>
+        {% for a in IdFactura %}
+            <option value="{{a.id}}">{{a.id}}</option>
+        {% endfor %}
+        </select><br/>
+        <label for="usuario">Usuario</label>
+        <select name="usuario">
+            <option value="0">Usuario</option>
+        {% for a in usuario %}
+            <option value="{{a.cedula}}">{{a.nombre}}</option>
+        {% endfor %}
+        </select><br/>
+        <label for="descripcion">Descripción</label>
+        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Descripcion de la compra">
+        <label for="estado">Estado</label>
+        <select name="estado">
+            <option value="Pendiente">Pendiente</option>
+            <option value="Completo">Completo</option>
+            <option value="Cancelado">Cancelado</option>
+        </select><br/>
+        <br/><button class="btn btn-primary" type="submit">Agregar</button>
+    </form>
+{% endblock %}

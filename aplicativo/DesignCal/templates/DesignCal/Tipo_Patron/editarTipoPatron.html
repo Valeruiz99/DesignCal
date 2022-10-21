@@ -1,0 +1,16 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+
+<h1>Editar Tipo de patrón ( {{ datos.tipoPatron }} )</h1>
+<form action="{% url 'DesignCal:tipoPatron-actualizar' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ datos.id }}">
+    <label for="tipoPatron">Tipo de patrón</label>
+    <input class="form-control" type="text" name="tipoPatron" id="tipoPatron" value="{{ datos.tipoPatron }}">
+    <label for="descripcion">Descripción</label>
+    <input class="form-control" type="text" name="descripcion" id="descripcion" value="{{ datos.descripcion }}">
+    <br/><button class="btn btn-primary" type="submit">Editar</button>
+</form>
+
+{% endblock %}

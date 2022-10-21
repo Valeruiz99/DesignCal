@@ -1,0 +1,22 @@
+{% extends "DesignCal/base.html" %}
+
+{% block body %}
+<h1>Ingresar una nueva factura</h1>
+<form action="{% url 'DesignCal:facturas-guardar' %}" method="post">
+    {% csrf_token %}
+    <label for="nombreArchivo">Nombre del archivo</label>
+    <select name="nombreArchivo">
+        <option value="0">Nombre del archivo</option>
+        {% for r in nombreArchivo %}
+            <option value="{{ r.id }}">{{ r.nombreArchivo }}</option>
+        {% endfor %}
+    </select><br/>
+    <label for="cantidad">Cantidad</label>
+    <input class="form-control" type="number" name="cantidad" id="cantidad" placeholder="Cantidad" >
+    <label for="total">Total</label>
+    <input class="form-control" type="number" name="total" id="total", placeholder="total">
+    <label for="fecha">Fecha</label>
+    <input class="form-control" type="date" name="fecha" id="fecha">
+    <br/><button class="btn btn-primary" type="submit">Agregar</button>
+</form>
+{% endblock %}

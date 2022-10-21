@@ -1,0 +1,50 @@
+{% if datos %}
+
+<nav aria-label="..." style="margin-left: 7%; display: grid; grid-template-columns: 50% 50%;">
+  <ul class="pagination">
+    <li class="page-item {% if not datos.has_previous %}disabled{% endif %}">
+      <a class="page-link" {% if datos.has_previous %} href="?page={{ datos.previous_page_number }}" {% endif %}>Anterior</a>
+    </li>
+
+    {% for i in "x"|rjust:datos.paginator.num_pages|make_list %}
+    <li class="page-item {% if forloop.counter == datos.number %}active{% endif %}" aria-current="page">
+      <a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+    </li>
+    {% endfor %}
+
+    <li class="page-item {% if not datos.has_next %}disabled{% endif %}">
+      <a class="page-link" {% if datos.has_next %}href="?page={{ datos.next_page_number }}" {% endif %}>Siguiente</a>
+    </li>
+  </ul>
+  <div style="display: flex;
+  flex-direction: row-reverse;margin-right: 14%;">
+    <a class="btn btn-outline-success my-2 my-sm-0" style="height: 70%;" href="{% url 'DesignCal:correos-add' %}">Agregar Nuevo Correo</a>
+  </div>
+</nav>
+
+<table class="table table-striped container my-3" id="list">
+  <thead>
+    <th>ID</th>
+    <th>Usuario</th>
+    <th>Título</th>
+    <th>Contenido</th>
+    <th colspan="2">Acciones</th>
+  </thead>
+  <tbody>
+    {% for r in datos %}
+    <tr>
+      <td>{{ r.id }}</td>
+      <td>{{ r.usuario }}</td>
+      <td>{{ r.titulo }}</td>
+      <td>{{ r.contenido }}</td>
+      <td><a class="btn btn-warning" href="{% url 'DesignCal:correos-editar' r.id %}">Editar</a></td>
+      <td><a class="btn btn-danger" onclick="confirmar('{% url 'DesignCal:correos-eliminar' r.id %}')">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+Pág. {{ datos.number }} de {{ datos.paginator.num_pages }}.
+{% else %}
+<h1>No hay datos</h1>
+{% endif %}
+</div>
